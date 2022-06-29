@@ -1,6 +1,9 @@
 name: Actions Worflow
 
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
+    types: [opened, closed, assigned, reopened]
 
 jobs:
   run-github-actions:
