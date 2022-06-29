@@ -1,11 +1,15 @@
 name: Context testing
-on: push
+on: 
+  push:
+  pull_request:
+
 
 #https://docs.github.com/en/actions/learn-github-actions/contexts
 
 jobs:
   functions:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: dump
         run: |
@@ -13,19 +17,29 @@ jobs:
           echo ${{ startsWith('hello', 'he') }}
           echo ${{ endsWith('hello', 'lo') }}
           echo ${{ format('{0} {1}!{2}', 'hello', 'world', '!') }}
+  
   dump_contexts_to_log:
     runs-on: ubuntu-latest
+    if: github.event_name == 'push'
     steps:
       - name: Dump GitHub context
         id: github_context_step
         run: echo '${{ toJSON(github) }}'
+      
       - name: Dump job context
+        if: failure()
         run: echo '${{ toJSON(job) }}'
+        continue-on-error: true
+      
       - name: Dump steps context
         run: echo '${{ toJSON(steps) }}'
+      
       - name: Dump runner context
         run: echo '${{ toJSON(runner) }}'
+      
       - name: Dump strategy context
         run: echo '${{ toJSON(strategy) }}'
+      
       - name: Dump matrix context
+        if: always()
         run: echo '${{ toJSON(matrix) }}'
