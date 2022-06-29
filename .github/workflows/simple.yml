@@ -18,5 +18,18 @@ jobs:
           print(platform.python_version())
           print(platform.processor())
         shell: python
-
+  run-windows-command:
+    runs-on: windows-latest
+    steps:
+      - name: Directory PowerShell
+        run: Get-Location
+      - name: Directory Bash
+        run: pwd
+        shell: bash
+      - name: python Command
+        run: |
+          import platform
+          print(platform.python_version())
+          print(platform.processor())
+        shell: python
 
