@@ -18,6 +18,6 @@ jobs:
           args: "Hello World"
       - name: Log node new version
         uses: docker://node:12.14.1-alpine3.10
-        run: |
-          node -v
-          cat /etc/os-release
+        with:
+          entrypoint: node
+          args: -v
