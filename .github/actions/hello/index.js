@@ -5,7 +5,7 @@ try {
 
     const name = core.getInput('who-are-you')
 
-    console.log(`Hello, ` + name)
+    console.log(`Hello, ${name}`)
     
     const time = new Date();
     
