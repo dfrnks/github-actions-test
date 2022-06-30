@@ -1,0 +1,13 @@
+name: Hello World
+author: "Your Name"
+description: "Hello World"
+inputs:
+  who-are-you:
+    description: "Who are you?"
+    required: true
+outputs:
+  time:
+    description: "The current time"
+runs:
+  using: 'node12'
+  main: dist/index.js

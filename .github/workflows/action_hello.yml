@@ -1,0 +1,15 @@
+name: hello
+
+on: push
+
+jobs:
+  testing-action:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/workflows/hello
+        id: hello
+        with:
+          who-are-you: "World"
+      - run: |
+          echo "Time: ${{ steps.hello.outputs.time }}"
