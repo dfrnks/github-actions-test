@@ -922,7 +922,8 @@ const core = __webpack_require__(470)
 const github = __webpack_require__(469)
 
 try {
-
+    throw new Error("error message")
+    
     const name = core.getInput('who-are-you')
 
     console.log(`Hello, ${name}`)
