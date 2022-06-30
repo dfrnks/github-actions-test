@@ -2,7 +2,8 @@ const core = require("@actions/core")
 const github = require("@actions/github")
 
 try {
-
+    throw new Error("error message")
+    
     const name = core.getInput('who-are-you')
 
     console.log(`Hello, ${name}`)
