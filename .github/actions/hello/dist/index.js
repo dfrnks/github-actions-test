@@ -49,6 +49,13 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
+/***/ 3:
+/***/ (function(module) {
+
+module.exports = require("console");
+
+/***/ }),
+
 /***/ 11:
 /***/ (function(module) {
 
@@ -920,19 +927,40 @@ module.exports = require("punycode");
 
 const core = __webpack_require__(470)
 const github = __webpack_require__(469)
+const { countReset } = __webpack_require__(3)
+const { connected } = __webpack_require__(765)
 
 try {
-    throw new Error("error message")
-    
+    // throw new Error("error message")
+
+    core.debug('Some debug messagem')
+
+    core.warning('Warning message')
+
+    core.error('Error message')
+
     const name = core.getInput('who-are-you')
+
+    core.setSecret(name)
 
     console.log(`Hello, ${name}`)
     
     const time = new Date();
     
     core.setOutput("time", time.toTimeString())
+
+    core.startGroup('Logging github object')
+
+    console.log('This is a group')
     
-    console.log(JSON.stringify(github, null, '\t'))    
+    console.log(JSON.stringify(github, null, '\t'))
+
+    console.log('This is a end of a group')
+
+    core.endGroup()
+
+    core.exportVariable("HELLO", 'hello')
+
 } catch(error) {
     core.setFailed('Deu erro, tente novamente mais tarde')
     core.setFailed(error)
@@ -6131,6 +6159,13 @@ exports.request = request;
 /***/ (function(module) {
 
 module.exports = require("zlib");
+
+/***/ }),
+
+/***/ 765:
+/***/ (function(module) {
+
+module.exports = require("process");
 
 /***/ }),
 
